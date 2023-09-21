@@ -9,14 +9,20 @@
 			"env": {
 				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
 			},
-			"channel": "development"
+			"channel": "development",
+			"android": {
+				"buildType": "apk"
+			}
 		},
 		"preview": {
 			"distribution": "internal",
 			"env": {
 				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
 			},
-			"channel": "preview"
+			"channel": "preview",
+			"android": {
+				"buildType": "apk"
+			}
 		},
 		"production": {
 			"env": {
