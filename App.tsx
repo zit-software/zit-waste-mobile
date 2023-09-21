@@ -1,22 +1,23 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import { Camera, CameraType } from "expo-camera";
-import { useState } from "react";
+import * as Network from "expo-network";
+import { useRef, useState } from "react";
 import {
   Button,
   Pressable,
+  SafeAreaView,
   StyleSheet,
   Text,
-  Touchable,
   TouchableOpacity,
   View,
 } from "react-native";
-import * as Network from "expo-network";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 Network.getIpAddressAsync();
 
 export default function App() {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
+  const cameraRef = useRef<Camera>(null);
 
   if (!permission) {
     return <View />;
@@ -39,15 +40,34 @@ export default function App() {
     );
   }
 
+  const takePicture = async () => {
+    if (cameraRef.current) {
+      const photo = await cameraRef.current.takePictureAsync();
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
-        <View style={styles.bottom}>
-          <TouchableOpacity style={styles.submitButton}>
-            <View style={styles.submmitButtonInner}></View>
-          </TouchableOpacity>
-        </View>
-      </Camera>
+      <SafeAreaView style={styles.cameraWrapper}>
+        <Camera style={styles.camera} type={type} ref={cameraRef} />
+      </SafeAreaView>
+
+      <View style={styles.bottom}>
+        <View></View>
+
+        <TouchableOpacity style={styles.submitButton} onPress={takePicture}>
+          <View style={styles.submmitButtonInner}></View>
+        </TouchableOpacity>
+
+        <Pressable>
+          <MaterialIcons
+            name="flip-camera-android"
+            size={24}
+            color="white"
+            onPress={toggleCameraType}
+          />
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -55,34 +75,31 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "black",
     justifyContent: "center",
+    alignItems: "center",
+  },
+  cameraWrapper: {
+    flex: 1,
+    width: "100%",
   },
   camera: {
     flex: 1,
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: "row",
-    backgroundColor: "transparent",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
   },
   bottom: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "black",
+    backgroundColor: "#00000020",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
+    padding: 20,
   },
   submitButton: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     backgroundColor: "transparent",
     borderRadius: 100,
     borderColor: "white",
