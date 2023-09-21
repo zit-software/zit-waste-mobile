@@ -5,7 +5,6 @@ import {
 	ActivityIndicator,
 	Alert,
 	Image,
-	Modal,
 	Pressable,
 	SafeAreaView,
 	StyleSheet,
@@ -97,7 +96,7 @@ export default function App() {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container]}>
 			<SafeAreaView style={styles.cameraWrapper}>
 				<View style={styles.camera}>
 					<Camera
@@ -114,25 +113,7 @@ export default function App() {
 				</View>
 			</SafeAreaView>
 
-			<View style={styles.bottom}>
-				<NetworkStatus />
-				<TouchableOpacity
-					style={styles.submitButton}
-					onPress={takePicture}
-				>
-					<View style={styles.submmitButtonInner}></View>
-				</TouchableOpacity>
-				<Pressable>
-					<MaterialIcons
-						name='flip-camera-android'
-						size={24}
-						color='#000'
-						onPress={toggleCameraType}
-					/>
-				</Pressable>
-			</View>
-
-			{isOpenPredictModal && (
+			{isOpenPredictModal ? (
 				<View style={styles.predictModal}>
 					{isLoading ? (
 						<>
@@ -213,6 +194,24 @@ export default function App() {
 						</>
 					)}
 				</View>
+			) : (
+				<View style={styles.bottom}>
+					<NetworkStatus />
+					<TouchableOpacity
+						style={styles.submitButton}
+						onPress={takePicture}
+					>
+						<View style={styles.submmitButtonInner}></View>
+					</TouchableOpacity>
+					<Pressable>
+						<MaterialIcons
+							name='flip-camera-android'
+							size={24}
+							color='#000'
+							onPress={toggleCameraType}
+						/>
+					</Pressable>
+				</View>
 			)}
 
 			<ReportModal
@@ -265,15 +264,7 @@ const styles = StyleSheet.create({
 		borderRadius: 100,
 	},
 	predictModal: {
-		position: 'absolute',
-		left: 0,
-		right: 0,
-		padding: 20,
-		backgroundColor: '#fff',
-		margin: 10,
-		borderRadius: 20,
-		bottom: 0,
-		overflow: 'hidden',
+		paddingBottom: 20,
 	},
 	predictImg: {
 		width: 250,

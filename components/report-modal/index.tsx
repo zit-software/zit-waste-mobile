@@ -123,10 +123,11 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		borderRadius: 20,
 		padding: 20,
-		margin: 10,
 		display: 'flex',
 		rowGap: 10,
 		bottom: 0,
+		right: 0,
+		left: 0,
 	},
 	heading: {
 		fontSize: 20,
