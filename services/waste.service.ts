@@ -1,6 +1,12 @@
 import { AxiosInstance } from 'axios';
 import { createClient } from '../utils/client';
 
+export interface DetectionResponse {
+	id: number;
+	name: string;
+	one_hot: number[];
+}
+
 class WasteService {
 	private client: AxiosInstance;
 
@@ -21,11 +27,11 @@ class WasteService {
 
 		form.append('img', img);
 
-		return await this.client.post(`/detection`, form, {
+		return (await this.client.post(`/detection`, form, {
 			headers: {
 				'Content-Type': 'multipart/form-data',
 			},
-		});
+		})) as unknown as DetectionResponse;
 	}
 }
 

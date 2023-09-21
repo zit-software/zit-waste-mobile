@@ -3,7 +3,9 @@ import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
 import * as Network from 'expo-network';
 import { useRef, useState } from 'react';
 import {
-	Button,
+	ActivityIndicator,
+	Alert,
+	Image,
 	Pressable,
 	SafeAreaView,
 	StyleSheet,
@@ -11,7 +13,9 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import wasteService from './services/waste.service';
+import Button from './components/button';
+import wasteService, { DetectionResponse } from './services/waste.service';
+import { getLabel } from './constants/labels';
 
 Network.getIpAddressAsync().then((ip) => {
 	console.log(ip);
@@ -25,6 +29,10 @@ export default function App() {
 	const [type, setType] = useState(CameraType.back);
 	const [permission, requestPermission] = Camera.useCameraPermissions();
 	const [photo, setPhoto] = useState<CameraCapturedPicture | null>();
+	const [isOpenPredictModal, setIsOpenPredictModal] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [prediected, setPredicted] = useState<DetectionResponse | null>();
+
 	const cameraRef = useRef<Camera | null>();
 
 	if (!permission) {
@@ -37,7 +45,9 @@ export default function App() {
 				<Text style={{ textAlign: 'center' }}>
 					We need your permission to show the camera
 				</Text>
-				<Button onPress={requestPermission} title='grant permission' />
+				<Button onPress={requestPermission}>
+					<Text>grant permission</Text>
+				</Button>
 			</View>
 		);
 	}
@@ -53,6 +63,9 @@ export default function App() {
 			return;
 		}
 
+		setIsLoading(true);
+		setIsOpenPredictModal(true);
+
 		try {
 			const photo = await cameraRef.current.takePictureAsync();
 			setPhoto(photo);
@@ -65,9 +78,11 @@ export default function App() {
 
 			const res = await wasteService.detect(img as unknown as Blob);
 
-			console.log(res.data);
+			setPredicted(res);
 		} catch (error) {
-			console.log(error);
+			Alert.alert('Lỗi', error.message);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -79,14 +94,12 @@ export default function App() {
 
 			<View style={styles.bottom}>
 				<View></View>
-
 				<TouchableOpacity
 					style={styles.submitButton}
 					onPress={takePicture}
 				>
 					<View style={styles.submmitButtonInner}></View>
 				</TouchableOpacity>
-
 				<Pressable>
 					<MaterialIcons
 						name='flip-camera-android'
@@ -96,6 +109,56 @@ export default function App() {
 					/>
 				</Pressable>
 			</View>
+
+			{isOpenPredictModal && (
+				<View style={styles.predictModal}>
+					{isLoading ? (
+						<View
+							style={{
+								minHeight: 200,
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+							}}
+						>
+							<ActivityIndicator size='large' color='#000' />
+						</View>
+					) : (
+						<>
+							<Image
+								style={styles.predictImg}
+								source={getLabel(prediected.id).img}
+							/>
+
+							<Text style={styles.predictText}>
+								{getLabel(prediected.id).name}
+							</Text>
+
+							<View style={styles.buttons}>
+								<Button>
+									<MaterialIcons
+										name='bug-report'
+										size={24}
+										color='#000'
+									/>
+									<Text>Báo lỗi</Text>
+								</Button>
+								<Button
+									backgroundColor='#000'
+									onPress={() => setIsOpenPredictModal(false)}
+								>
+									<MaterialIcons
+										name='close'
+										size={24}
+										color='#fff'
+									/>
+									<Text style={{ color: '#fff' }}>Đóng</Text>
+								</Button>
+							</View>
+						</>
+					)}
+				</View>
+			)}
 		</View>
 	);
 }
@@ -125,7 +188,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 		padding: 20,
 		margin: 10,
-		borderRadius: 10,
+		borderRadius: 20,
 	},
 	submitButton: {
 		width: 80,
@@ -140,5 +203,34 @@ const styles = StyleSheet.create({
 		margin: 5,
 		backgroundColor: '#000',
 		borderRadius: 100,
+	},
+	predictModal: {
+		position: 'absolute',
+		left: 0,
+		right: 0,
+		padding: 20,
+		backgroundColor: '#fff',
+		margin: 10,
+		borderRadius: 20,
+		bottom: 0,
+		zIndex: 1,
+	},
+	predictImg: {
+		width: 200,
+		height: 200,
+		objectFit: 'contain',
+		alignSelf: 'center',
+	},
+	predictText: {
+		textAlign: 'center',
+		fontWeight: 'bold',
+		fontSize: 20,
+		marginBottom: 20,
+	},
+	buttons: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		gap: 5,
 	},
 });
