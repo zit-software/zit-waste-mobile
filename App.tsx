@@ -5,6 +5,7 @@ import {
 	ActivityIndicator,
 	Alert,
 	Image,
+	Modal,
 	Pressable,
 	SafeAreaView,
 	StyleSheet,
@@ -29,7 +30,7 @@ export default function App() {
 	const [isOpenReportModal, setIsOpenReportModal] = useState(false);
 	const { width } = useWindowDimensions();
 
-	const height = useMemo(() => Math.round((width * 4) / 3), [width]);
+	const height = useMemo(() => Math.round(((width - 20) * 4) / 3), [width]);
 
 	const cameraRef = useRef<Camera | null>();
 
@@ -98,17 +99,19 @@ export default function App() {
 	return (
 		<View style={styles.container}>
 			<SafeAreaView style={styles.cameraWrapper}>
-				<Camera
-					style={[
-						styles.camera,
-						{
-							height,
-						},
-					]}
-					type={type}
-					ref={cameraRef}
-					ratio='4:3'
-				/>
+				<View style={styles.camera}>
+					<Camera
+						style={[
+							{
+								width: '100%',
+								height,
+							},
+						]}
+						type={type}
+						ref={cameraRef}
+						ratio='4:3'
+					/>
+				</View>
 			</SafeAreaView>
 
 			<View style={styles.bottom}>
@@ -123,7 +126,7 @@ export default function App() {
 					<MaterialIcons
 						name='flip-camera-android'
 						size={24}
-						color='#fff'
+						color='#000'
 						onPress={toggleCameraType}
 					/>
 				</Pressable>
@@ -224,42 +227,41 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'black',
-		justifyContent: 'center',
-		alignItems: 'center',
+		backgroundColor: '#fff',
+		paddingHorizontal: 10,
 	},
 	cameraWrapper: {
-		flex: 1,
 		width: '100%',
+		display: 'flex',
+		flex: 1,
+		justifyContent: 'center',
 	},
 	camera: {
 		width: '100%',
+		overflow: 'hidden',
+		borderRadius: 20,
 	},
 	bottom: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		padding: 20,
-		margin: 10,
 		borderRadius: 20,
+		width: '100%',
 	},
 	submitButton: {
 		width: 80,
 		height: 80,
 		backgroundColor: 'transparent',
 		borderRadius: 100,
-		borderColor: '#fff',
+		borderColor: '#000',
 		borderWidth: 5,
 	},
 	submmitButtonInner: {
 		flex: 1,
 		margin: 5,
-		backgroundColor: '#fff',
+		backgroundColor: '#000',
 		borderRadius: 100,
 	},
 	predictModal: {
