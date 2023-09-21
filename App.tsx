@@ -47,7 +47,6 @@ export default function App() {
 				<Text
 					style={{
 						textAlign: 'center',
-						color: '#fff',
 						marginBottom: 10,
 					}}
 				>
@@ -55,10 +54,9 @@ export default function App() {
 				</Text>
 				<Button
 					onPress={requestPermission}
-					backgroundColor='#fff'
 					icon={<MaterialIcons name='camera' />}
 				>
-					<Text style={{ color: '#000' }}>Cho phép</Text>
+					<Text>Cho phép</Text>
 				</Button>
 			</View>
 		);
