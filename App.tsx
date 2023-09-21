@@ -1,5 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Camera, CameraType } from 'expo-camera';
+import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
 import * as Network from 'expo-network';
 import { useRef, useState } from 'react';
 import {
@@ -17,7 +17,8 @@ Network.getIpAddressAsync();
 export default function App() {
 	const [type, setType] = useState(CameraType.back);
 	const [permission, requestPermission] = Camera.useCameraPermissions();
-	const cameraRef = useRef<Camera>(null);
+	const [photo, setPhoto] = useState<CameraCapturedPicture | null>();
+	const cameraRef = useRef<Camera | null>();
 
 	if (!permission) {
 		return <View />;
@@ -43,6 +44,7 @@ export default function App() {
 	const takePicture = async () => {
 		if (cameraRef.current) {
 			const photo = await cameraRef.current.takePictureAsync();
+			setPhoto(photo);
 		}
 	};
 
