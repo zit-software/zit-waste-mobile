@@ -8,18 +8,21 @@
 			"distribution": "internal",
 			"env": {
 				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
-			}
+			},
+			"channel": "development"
 		},
 		"preview": {
 			"distribution": "internal",
 			"env": {
 				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
-			}
+			},
+			"channel": "preview"
 		},
 		"production": {
 			"env": {
 				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
-			}
+			},
+			"channel": "production"
 		}
 	},
 	"submit": {
