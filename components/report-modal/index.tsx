@@ -44,6 +44,8 @@ export default function ReportModal({
 			);
 
 			Alert.alert('Thành công', res.message);
+
+			onClose();
 		} catch (error) {
 			Alert.alert('Lỗi', error.message);
 		} finally {

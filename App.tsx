@@ -1,6 +1,6 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
 	ActivityIndicator,
 	Alert,
@@ -11,6 +11,7 @@ import {
 	Text,
 	TouchableOpacity,
 	View,
+	useWindowDimensions,
 } from 'react-native';
 import Button from './components/button';
 import NetworkStatus from './components/network-status';
@@ -26,6 +27,9 @@ export default function App() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [prediected, setPredicted] = useState<DetectionResponse | null>();
 	const [isOpenReportModal, setIsOpenReportModal] = useState(false);
+	const { width } = useWindowDimensions();
+
+	const height = useMemo(() => Math.round((width * 4) / 3), [width]);
 
 	const cameraRef = useRef<Camera | null>();
 
@@ -87,7 +91,17 @@ export default function App() {
 	return (
 		<View style={styles.container}>
 			<SafeAreaView style={styles.cameraWrapper}>
-				<Camera style={styles.camera} type={type} ref={cameraRef} />
+				<Camera
+					style={[
+						styles.camera,
+						{
+							height,
+						},
+					]}
+					type={type}
+					ref={cameraRef}
+					ratio='4:3'
+				/>
 			</SafeAreaView>
 
 			<View style={styles.bottom}>
@@ -102,7 +116,7 @@ export default function App() {
 					<MaterialIcons
 						name='flip-camera-android'
 						size={24}
-						color='#000'
+						color='#fff'
 						onPress={toggleCameraType}
 					/>
 				</Pressable>
@@ -212,14 +226,13 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 	camera: {
-		flex: 1,
+		width: '100%',
 	},
 	bottom: {
 		position: 'absolute',
 		bottom: 0,
 		left: 0,
 		right: 0,
-		backgroundColor: '#fff',
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
@@ -233,13 +246,13 @@ const styles = StyleSheet.create({
 		height: 80,
 		backgroundColor: 'transparent',
 		borderRadius: 100,
-		borderColor: '#000',
+		borderColor: '#fff',
 		borderWidth: 5,
 	},
 	submmitButtonInner: {
 		flex: 1,
 		margin: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#fff',
 		borderRadius: 100,
 	},
 	predictModal: {
