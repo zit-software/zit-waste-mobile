@@ -113,6 +113,10 @@ export default function App() {
 					{isLoading ? (
 						<>
 							<ActivityIndicator size='large' color='#000' />
+							<Image
+								source={require('./assets/zit-predict.png')}
+								style={styles.zit}
+							/>
 						</>
 					) : (
 						<>
@@ -247,7 +251,7 @@ const styles = StyleSheet.create({
 		margin: 10,
 		borderRadius: 20,
 		bottom: 0,
-		minHeight: 300,
+		overflow: 'hidden',
 	},
 	predictImg: {
 		width: 250,
@@ -273,5 +277,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		gap: 5,
+	},
+	zit: {
+		width: 200,
+		height: 200,
+		objectFit: 'cover',
+		alignSelf: 'flex-end',
+		marginBottom: -20,
+		marginRight: -20,
 	},
 });
