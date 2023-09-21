@@ -113,14 +113,48 @@ export default function App() {
 						</>
 					) : (
 						<>
+							<Image style={styles.predictImg} source={photo} />
 							<Image
-								style={styles.predictImg}
+								style={styles.predictIcon}
 								source={getLabel(prediected.id).img}
 							/>
 
 							<Text style={styles.predictText}>
-								{getLabel(prediected.id).name}
+								Có thể đây là{' '}
+								<Text
+									style={{
+										fontWeight: 'bold',
+									}}
+								>
+									{getLabel(prediected.id).name}
+								</Text>
 							</Text>
+
+							<View
+								style={{
+									alignSelf: 'center',
+									width: 50,
+									height: 50,
+									borderRadius: 100,
+									backgroundColor: '#00FF4720',
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginVertical: 10,
+								}}
+							>
+								<Text
+									style={{
+										color: '#00601B',
+										fontWeight: 'bold',
+									}}
+								>
+									{(
+										prediected.one_hot[prediected.id] * 100
+									).toFixed(0)}
+									%
+								</Text>
+							</View>
 
 							<View style={styles.buttons}>
 								<Button>
@@ -208,14 +242,21 @@ const styles = StyleSheet.create({
 	predictImg: {
 		width: 200,
 		height: 200,
-		objectFit: 'contain',
+		objectFit: 'cover',
 		alignSelf: 'center',
+		borderRadius: 20,
+		marginVertical: 10,
+	},
+	predictIcon: {
+		width: 100,
+		height: 100,
+		alignSelf: 'center',
+		objectFit: 'contain',
 	},
 	predictText: {
 		textAlign: 'center',
-		fontWeight: 'bold',
 		fontSize: 20,
-		marginBottom: 20,
+		marginVertical: 10,
 	},
 	buttons: {
 		display: 'flex',
