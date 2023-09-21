@@ -61,8 +61,6 @@ export default function App() {
 		try {
 			const photo = await cameraRef.current.takePictureAsync();
 
-			cameraRef.current.pausePreview();
-
 			setIsLoading(true);
 			setIsOpenPredictModal(true);
 			setPhoto(photo);
