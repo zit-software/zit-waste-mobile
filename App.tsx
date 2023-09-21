@@ -11,8 +11,15 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
+import mainService from './services/main.service';
 
-Network.getIpAddressAsync();
+Network.getIpAddressAsync().then((ip) => {
+	console.log(ip);
+});
+
+Network.getNetworkStateAsync().then((state) => {
+	console.log(state);
+});
 
 export default function App() {
 	const [type, setType] = useState(CameraType.back);
@@ -42,9 +49,25 @@ export default function App() {
 	}
 
 	const takePicture = async () => {
-		if (cameraRef.current) {
+		if (!cameraRef.current) {
+			return;
+		}
+
+		try {
 			const photo = await cameraRef.current.takePictureAsync();
 			setPhoto(photo);
+
+			const img = {
+				type: 'image/jpeg',
+				uri: photo.uri,
+				name: 'photo.jpg',
+			};
+
+			const res = await mainService.detect(img);
+
+			console.log(res.data);
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
@@ -68,7 +91,7 @@ export default function App() {
 					<MaterialIcons
 						name='flip-camera-android'
 						size={24}
-						color='white'
+						color='#000'
 						onPress={toggleCameraType}
 					/>
 				</Pressable>
@@ -96,24 +119,26 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		left: 0,
 		right: 0,
-		backgroundColor: '#00000020',
+		backgroundColor: '#fff',
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		padding: 20,
+		margin: 10,
+		borderRadius: 10,
 	},
 	submitButton: {
 		width: 80,
 		height: 80,
 		backgroundColor: 'transparent',
 		borderRadius: 100,
-		borderColor: 'white',
+		borderColor: '#000',
 		borderWidth: 5,
 	},
 	submmitButtonInner: {
 		flex: 1,
 		margin: 5,
-		backgroundColor: 'white',
+		backgroundColor: '#000',
 		borderRadius: 100,
 	},
 });
