@@ -27,10 +27,20 @@
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
-			}
+			},
+			"permissions": [
+				"android.permission.CAMERA",
+				"android.permission.RECORD_AUDIO"
+			],
+			"package": "com.thangved.zitwaste"
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "79cf6e58-c54e-4824-8319-952a3d9996bf"
+			}
 		}
 	}
 }
