@@ -29,6 +29,8 @@ export default function App() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [prediected, setPredicted] = useState<DetectionResponse | null>();
 	const [isOpenReportModal, setIsOpenReportModal] = useState(false);
+	const [isTakingPicture, setIsTakingPicture] = useState(false);
+
 	const { width } = useWindowDimensions();
 
 	const height = useMemo(() => Math.round(((width - 20) * 4) / 3), [width]);
@@ -74,6 +76,7 @@ export default function App() {
 		}
 
 		try {
+			setIsTakingPicture(true);
 			const photo = await cameraRef.current.takePictureAsync();
 
 			setIsLoading(true);
@@ -94,6 +97,7 @@ export default function App() {
 			Alert.alert('Lỗi', error.message);
 		} finally {
 			setIsLoading(false);
+			setIsTakingPicture(false);
 		}
 	};
 
@@ -178,12 +182,19 @@ export default function App() {
 									{
 										width: '100%',
 										height,
+										justifyContent: 'center',
 									},
 								]}
 								type={type}
 								ref={cameraRef}
 								ratio='4:3'
-							/>
+							>
+								<ActivityIndicator
+									size={50}
+									color='#fff'
+									animating={isTakingPicture}
+								/>
+							</Camera>
 						</View>
 					</View>
 					<View style={styles.bottom}>
