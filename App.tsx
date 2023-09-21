@@ -40,7 +40,13 @@ export default function App() {
 	if (!permission.granted) {
 		return (
 			<View style={styles.container}>
-				<Text style={{ textAlign: 'center' }}>
+				<Text
+					style={{
+						textAlign: 'center',
+						color: '#fff',
+						marginBottom: 10,
+					}}
+				>
 					Chúng tôi cần sử dụng camera của bạn
 				</Text>
 				<Button
