@@ -137,7 +137,7 @@ export default function App() {
 							<Image style={styles.predictImg} source={photo} />
 							<Image
 								style={styles.predictIcon}
-								source={getLabel(prediected.id).img}
+								source={getLabel(prediected?.id).img}
 							/>
 
 							<Text style={styles.predictText}>
@@ -147,7 +147,7 @@ export default function App() {
 										fontWeight: 'bold',
 									}}
 								>
-									{getLabel(prediected.id).name}
+									{getLabel(prediected?.id).name}
 								</Text>
 							</Text>
 
@@ -171,7 +171,7 @@ export default function App() {
 									}}
 								>
 									{(
-										prediected.one_hot[prediected.id] * 100
+										prediected?.one_hot[prediected.id] * 100
 									).toFixed(0)}
 									%
 								</Text>
@@ -186,7 +186,7 @@ export default function App() {
 										size={24}
 										color='#000'
 									/>
-									<Text>Báo lỗi</Text>
+									<Text>Báo cáo</Text>
 								</Button>
 								<Button
 									backgroundColor='#000'
