@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingHorizontal: 20,
-		paddingVertical: 10,
+		paddingHorizontal: 25,
+		paddingVertical: 15,
 		backgroundColor: '#00000020',
-		borderRadius: 20,
+		borderRadius: 15,
 		gap: 5,
 	},
 });

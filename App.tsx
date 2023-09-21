@@ -13,11 +13,13 @@ import {
 	View,
 	useWindowDimensions,
 } from 'react-native';
+import AppHeader from './components/app-header';
 import Button from './components/button';
 import NetworkStatus from './components/network-status';
 import ReportModal from './components/report-modal';
 import { getLabel } from './constants/labels';
 import wasteService, { DetectionResponse } from './services/waste.service';
+import { COLOR_PRIMARY } from './constants/colors';
 
 export default function App() {
 	const [type, setType] = useState(CameraType.back);
@@ -96,7 +98,9 @@ export default function App() {
 	};
 
 	return (
-		<View style={[styles.container]}>
+		<SafeAreaView style={[styles.container]}>
+			<AppHeader />
+
 			{isOpenPredictModal ? (
 				<View style={styles.predictModal}>
 					{photo && (
@@ -125,19 +129,7 @@ export default function App() {
 								</Text>
 							</Text>
 
-							<View
-								style={{
-									alignSelf: 'center',
-									width: 50,
-									height: 50,
-									borderRadius: 100,
-									backgroundColor: '#00FF4720',
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									marginVertical: 10,
-								}}
-							>
+							<View style={styles.predicPercent}>
 								<Text
 									style={{
 										color: '#00601B',
@@ -163,7 +155,7 @@ export default function App() {
 									<Text>Báo cáo</Text>
 								</Button>
 								<Button
-									backgroundColor='#000'
+									backgroundColor={COLOR_PRIMARY}
 									onPress={() => setIsOpenPredictModal(false)}
 								>
 									<MaterialIcons
@@ -179,7 +171,7 @@ export default function App() {
 				</View>
 			) : (
 				<>
-					<SafeAreaView style={[styles.cameraWrapper]}>
+					<View style={[styles.cameraWrapper]}>
 						<View style={styles.camera}>
 							<Camera
 								style={[
@@ -193,7 +185,7 @@ export default function App() {
 								ratio='4:3'
 							/>
 						</View>
-					</SafeAreaView>
+					</View>
 					<View style={styles.bottom}>
 						<NetworkStatus />
 						<TouchableOpacity
@@ -206,7 +198,7 @@ export default function App() {
 							<MaterialIcons
 								name='flip-camera-android'
 								size={24}
-								color='#000'
+								color={COLOR_PRIMARY}
 								onPress={toggleCameraType}
 							/>
 						</Pressable>
@@ -219,7 +211,7 @@ export default function App() {
 				photo={photo}
 				onClose={() => setIsOpenReportModal(false)}
 			></ReportModal>
-		</View>
+		</SafeAreaView>
 	);
 }
 
@@ -254,13 +246,13 @@ const styles = StyleSheet.create({
 		height: 80,
 		backgroundColor: 'transparent',
 		borderRadius: 100,
-		borderColor: '#000',
+		borderColor: COLOR_PRIMARY,
 		borderWidth: 5,
 	},
 	submmitButtonInner: {
 		flex: 1,
 		margin: 5,
-		backgroundColor: '#000',
+		backgroundColor: COLOR_PRIMARY,
 		borderRadius: 100,
 	},
 	predictModal: {
@@ -290,5 +282,16 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		gap: 5,
+	},
+	predicPercent: {
+		alignSelf: 'center',
+		width: 50,
+		height: 50,
+		borderRadius: 100,
+		backgroundColor: '#00FF4720',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginVertical: 10,
 	},
 });

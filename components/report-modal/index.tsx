@@ -1,4 +1,4 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { CameraCapturedPicture } from 'expo-camera';
 import { useState } from 'react';
 import {
@@ -11,6 +11,7 @@ import {
 	Text,
 	View,
 } from 'react-native';
+import { COLOR_PRIMARY } from '../../constants/colors';
 import { Label, labels } from '../../constants/labels';
 import wasteService from '../../services/waste.service';
 import Button from '../button';
@@ -56,62 +57,71 @@ export default function ReportModal({
 	return (
 		visible && (
 			<View style={styles.modal}>
-				<Text style={styles.heading}>Báo cáo</Text>
+				<View style={styles.container}>
+					<Text style={styles.heading}>Báo cáo</Text>
 
-				<Image style={styles.img} source={photo} />
+					<Image style={styles.img} source={photo} />
 
-				<ActivityIndicator
-					animating={isLoading}
-					size='large'
-					color='#000'
-				/>
+					<ActivityIndicator
+						animating={isLoading}
+						size='large'
+						color='#000'
+					/>
 
-				<Text style={styles.whatIsThis}>Đây là gì?</Text>
+					<Text style={styles.whatIsThis}>Đây là gì?</Text>
 
-				<FlatList
-					style={styles.items}
-					horizontal
-					data={labels}
-					renderItem={({ item }) => {
-						const style: any[] = [styles.item];
+					<FlatList
+						style={styles.items}
+						horizontal
+						data={labels}
+						renderItem={({ item }) => {
+							const style: any[] = [styles.item];
 
-						if (item.id === selectedLabel.id) {
-							style.push(styles.selected);
+							if (item.id === selectedLabel.id) {
+								style.push(styles.selected);
+							}
+
+							return (
+								<Pressable
+									style={style}
+									key={item.id}
+									onPress={() => setSelectedLabel(item)}
+								>
+									<Text
+										style={{
+											color: COLOR_PRIMARY,
+											fontWeight: '700',
+										}}
+									>
+										{item.name}
+									</Text>
+								</Pressable>
+							);
+						}}
+					/>
+
+					<Button
+						icon={
+							<MaterialCommunityIcons
+								name='send'
+								color='#fff'
+								size={20}
+							/>
 						}
+						backgroundColor={COLOR_PRIMARY}
+						onPress={handleSubmit}
+					>
+						<Text style={{ color: '#fff' }}>Gửi</Text>
+					</Button>
 
-						return (
-							<Pressable
-								style={style}
-								key={item.id}
-								onPress={() => setSelectedLabel(item)}
-							>
-								<Text>{item.name}</Text>
-							</Pressable>
-						);
-					}}
-				/>
-
-				<Button
-					icon={
-						<MaterialCommunityIcons
-							name='send'
-							color='#fff'
-							size={20}
-						/>
-					}
-					backgroundColor='#000'
-					onPress={handleSubmit}
-				>
-					<Text style={{ color: '#fff' }}>Gửi</Text>
-				</Button>
-
-				<Button
-					icon={<MaterialCommunityIcons name='close' size={20} />}
-					backgroundColor='#00000020'
-					onPress={onClose}
-				>
-					<Text>Đóng</Text>
-				</Button>
+					<Button
+						icon={<MaterialCommunityIcons name='close' size={20} />}
+						backgroundColor='#00000020'
+						onPress={onClose}
+					>
+						<Text>Đóng</Text>
+					</Button>
+				</View>
 			</View>
 		)
 	);
@@ -123,11 +133,13 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		borderRadius: 20,
 		padding: 20,
-		display: 'flex',
-		rowGap: 10,
 		bottom: 0,
 		right: 0,
 		left: 0,
+		top: 0,
+	},
+	container: {
+		gap: 10,
 	},
 	heading: {
 		fontSize: 20,
@@ -155,13 +167,12 @@ const styles = StyleSheet.create({
 		marginRight: 10,
 		paddingHorizontal: 20,
 		paddingVertical: 10,
-		backgroundColor: '#00000020',
+		backgroundColor: `${COLOR_PRIMARY}20`,
 		borderRadius: 10,
 		borderWidth: 2,
 		borderColor: 'transparent',
 	},
 	selected: {
-		borderColor: '#000',
-		backgroundColor: 'transparent',
+		borderColor: COLOR_PRIMARY,
 	},
 });
