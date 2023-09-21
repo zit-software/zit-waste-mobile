@@ -1,6 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
-import * as Network from 'expo-network';
 import { useRef, useState } from 'react';
 import {
 	ActivityIndicator,
@@ -14,16 +13,9 @@ import {
 	View,
 } from 'react-native';
 import Button from './components/button';
+import NetworkStatus from './components/network-status';
 import { getLabel } from './constants/labels';
 import wasteService, { DetectionResponse } from './services/waste.service';
-
-Network.getIpAddressAsync().then((ip) => {
-	console.log(ip);
-});
-
-Network.getNetworkStateAsync().then((state) => {
-	console.log(state);
-});
 
 export default function App() {
 	const [type, setType] = useState(CameraType.back);
@@ -93,7 +85,7 @@ export default function App() {
 			</SafeAreaView>
 
 			<View style={styles.bottom}>
-				<View></View>
+				<NetworkStatus />
 				<TouchableOpacity
 					style={styles.submitButton}
 					onPress={takePicture}
@@ -179,6 +171,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
+		alignItems: 'center',
 		padding: 20,
 		margin: 10,
 		borderRadius: 20,
