@@ -71,11 +71,11 @@ export default function App() {
 			return;
 		}
 
-		setIsLoading(true);
-		setIsOpenPredictModal(true);
-
 		try {
 			const photo = await cameraRef.current.takePictureAsync();
+
+			setIsLoading(true);
+			setIsOpenPredictModal(true);
 
 			setPhoto(photo);
 
@@ -97,35 +97,18 @@ export default function App() {
 
 	return (
 		<View style={[styles.container]}>
-			<SafeAreaView style={styles.cameraWrapper}>
-				<View style={styles.camera}>
-					<Camera
-						style={[
-							{
-								width: '100%',
-								height,
-							},
-						]}
-						type={type}
-						ref={cameraRef}
-						ratio='4:3'
-					/>
-				</View>
-			</SafeAreaView>
-
 			{isOpenPredictModal ? (
 				<View style={styles.predictModal}>
+					{photo && (
+						<Image style={styles.predictImg} source={photo} />
+					)}
+
 					{isLoading ? (
 						<>
 							<ActivityIndicator size='large' color='#000' />
-							<Image
-								source={require('./assets/zit-predict.png')}
-								style={styles.zit}
-							/>
 						</>
 					) : (
 						<>
-							<Image style={styles.predictImg} source={photo} />
 							<Image
 								style={styles.predictIcon}
 								source={getLabel(prediected?.id).img}
@@ -195,23 +178,40 @@ export default function App() {
 					)}
 				</View>
 			) : (
-				<View style={styles.bottom}>
-					<NetworkStatus />
-					<TouchableOpacity
-						style={styles.submitButton}
-						onPress={takePicture}
-					>
-						<View style={styles.submmitButtonInner}></View>
-					</TouchableOpacity>
-					<Pressable>
-						<MaterialIcons
-							name='flip-camera-android'
-							size={24}
-							color='#000'
-							onPress={toggleCameraType}
-						/>
-					</Pressable>
-				</View>
+				<>
+					<SafeAreaView style={[styles.cameraWrapper]}>
+						<View style={styles.camera}>
+							<Camera
+								style={[
+									{
+										width: '100%',
+										height,
+									},
+								]}
+								type={type}
+								ref={cameraRef}
+								ratio='4:3'
+							/>
+						</View>
+					</SafeAreaView>
+					<View style={styles.bottom}>
+						<NetworkStatus />
+						<TouchableOpacity
+							style={styles.submitButton}
+							onPress={takePicture}
+						>
+							<View style={styles.submmitButtonInner}></View>
+						</TouchableOpacity>
+						<Pressable>
+							<MaterialIcons
+								name='flip-camera-android'
+								size={24}
+								color='#000'
+								onPress={toggleCameraType}
+							/>
+						</Pressable>
+					</View>
+				</>
 			)}
 
 			<ReportModal
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
 		borderRadius: 100,
 	},
 	predictModal: {
-		paddingBottom: 20,
+		paddingVertical: 40,
 	},
 	predictImg: {
 		width: 250,
@@ -290,13 +290,5 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		gap: 5,
-	},
-	zit: {
-		width: 200,
-		height: 200,
-		objectFit: 'cover',
-		alignSelf: 'flex-end',
-		marginBottom: -20,
-		marginRight: -20,
 	},
 });
