@@ -37,7 +37,10 @@ export default function App() {
 				<Text style={{ textAlign: 'center' }}>
 					We need your permission to show the camera
 				</Text>
-				<Button onPress={requestPermission}>
+				<Button
+					onPress={requestPermission}
+					icon={<MaterialIcons name='camera' />}
+				>
 					<Text>grant permission</Text>
 				</Button>
 			</View>
@@ -55,11 +58,13 @@ export default function App() {
 			return;
 		}
 
-		setIsLoading(true);
-		setIsOpenPredictModal(true);
-
 		try {
 			const photo = await cameraRef.current.takePictureAsync();
+
+			cameraRef.current.pausePreview();
+
+			setIsLoading(true);
+			setIsOpenPredictModal(true);
 			setPhoto(photo);
 
 			const img = {
