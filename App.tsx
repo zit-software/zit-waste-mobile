@@ -11,7 +11,7 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import mainService from './services/main.service';
+import wasteService from './services/waste.service';
 
 Network.getIpAddressAsync().then((ip) => {
 	console.log(ip);
@@ -63,7 +63,7 @@ export default function App() {
 				name: 'photo.jpg',
 			};
 
-			const res = await mainService.detect(img);
+			const res = await wasteService.detect(img as unknown as Blob);
 
 			console.log(res.data);
 		} catch (error) {
