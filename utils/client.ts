@@ -6,6 +6,10 @@ export const createClient = (baseUrl = '') => {
 		baseURL: `${API_URL}/${baseUrl}`,
 	});
 
+	client.interceptors.request.use((config) => {
+		return config;
+	});
+
 	client.interceptors.response.use(
 		(res) => res.data,
 		(error) => {

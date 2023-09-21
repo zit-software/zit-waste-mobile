@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Button from './components/button';
 import NetworkStatus from './components/network-status';
+import ReportModal from './components/report-modal';
 import { getLabel } from './constants/labels';
 import wasteService, { DetectionResponse } from './services/waste.service';
 
@@ -24,6 +25,7 @@ export default function App() {
 	const [isOpenPredictModal, setIsOpenPredictModal] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [prediected, setPredicted] = useState<DetectionResponse | null>();
+	const [isOpenReportModal, setIsOpenReportModal] = useState(false);
 
 	const cameraRef = useRef<Camera | null>();
 
@@ -58,11 +60,12 @@ export default function App() {
 			return;
 		}
 
+		setIsLoading(true);
+		setIsOpenPredictModal(true);
+
 		try {
 			const photo = await cameraRef.current.takePictureAsync();
 
-			setIsLoading(true);
-			setIsOpenPredictModal(true);
 			setPhoto(photo);
 
 			const img = {
@@ -157,7 +160,9 @@ export default function App() {
 							</View>
 
 							<View style={styles.buttons}>
-								<Button>
+								<Button
+									onPress={() => setIsOpenReportModal(true)}
+								>
 									<MaterialIcons
 										name='bug-report'
 										size={24}
@@ -181,6 +186,12 @@ export default function App() {
 					)}
 				</View>
 			)}
+
+			<ReportModal
+				visible={isOpenReportModal}
+				photo={photo}
+				onClose={() => setIsOpenReportModal(false)}
+			></ReportModal>
 		</View>
 	);
 }
@@ -236,16 +247,15 @@ const styles = StyleSheet.create({
 		margin: 10,
 		borderRadius: 20,
 		bottom: 0,
-		zIndex: 1,
 		minHeight: 300,
 	},
 	predictImg: {
-		width: 200,
-		height: 200,
+		width: 250,
+		height: 250,
 		objectFit: 'cover',
 		alignSelf: 'center',
 		borderRadius: 20,
-		marginVertical: 10,
+		marginVertical: 20,
 	},
 	predictIcon: {
 		width: 100,

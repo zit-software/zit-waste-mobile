@@ -1,4 +1,12 @@
-export const labels = [
+import { ImageSourcePropType } from 'react-native';
+
+export interface Label {
+	id: number;
+	name: string;
+	img: ImageSourcePropType;
+}
+
+export const labels: Label[] = [
 	{
 		id: 0,
 		name: 'Rác điện tử',
