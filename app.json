@@ -19,15 +19,20 @@
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},
+		"primaryColor": "#1455B6",
+		"backgroundColor": "#ffffff",
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.thangved.zitwaste"
+			"bundleIdentifier": "com.thangved.zitwaste",
+			"backgroundColor": "#ffffff",
+			"icon": "./assets/icon.png"
 		},
 		"android": {
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/adaptive-icon.png",
-				"backgroundColor": "#ffffff"
+				"backgroundColor": "#1455B6",
+				"backgroundImage": "./assets/adaptive-icon-background.png"
 			},
 			"permissions": [
 				"android.permission.CAMERA",
