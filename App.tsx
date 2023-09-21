@@ -14,8 +14,8 @@ import {
 	View,
 } from 'react-native';
 import Button from './components/button';
-import wasteService, { DetectionResponse } from './services/waste.service';
 import { getLabel } from './constants/labels';
+import wasteService, { DetectionResponse } from './services/waste.service';
 
 Network.getIpAddressAsync().then((ip) => {
 	console.log(ip);
@@ -113,16 +113,9 @@ export default function App() {
 			{isOpenPredictModal && (
 				<View style={styles.predictModal}>
 					{isLoading ? (
-						<View
-							style={{
-								minHeight: 200,
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}
-						>
+						<>
 							<ActivityIndicator size='large' color='#000' />
-						</View>
+						</>
 					) : (
 						<>
 							<Image
@@ -214,6 +207,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		bottom: 0,
 		zIndex: 1,
+		minHeight: 300,
 	},
 	predictImg: {
 		width: 200,
