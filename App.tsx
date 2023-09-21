@@ -41,13 +41,14 @@ export default function App() {
 		return (
 			<View style={styles.container}>
 				<Text style={{ textAlign: 'center' }}>
-					We need your permission to show the camera
+					Chúng tôi cần sử dụng camera của bạn
 				</Text>
 				<Button
 					onPress={requestPermission}
+					backgroundColor='#fff'
 					icon={<MaterialIcons name='camera' />}
 				>
-					<Text>grant permission</Text>
+					<Text style={{ color: '#000' }}>Cho phép</Text>
 				</Button>
 			</View>
 		);
