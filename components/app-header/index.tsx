@@ -17,7 +17,7 @@ export default function AppHeader() {
 
 const styles = StyleSheet.create({
 	container: {
-		paddingTop: 40,
+		paddingTop: 10,
 	},
 	inner: {
 		flexDirection: 'row',

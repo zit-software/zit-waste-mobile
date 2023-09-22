@@ -6,7 +6,6 @@ import {
 	Alert,
 	Image,
 	Pressable,
-	SafeAreaView,
 	StyleSheet,
 	Text,
 	TouchableOpacity,
@@ -20,6 +19,7 @@ import ReportModal from './components/report-modal';
 import { getLabel } from './constants/labels';
 import wasteService, { DetectionResponse } from './services/waste.service';
 import { COLOR_PRIMARY } from './constants/colors';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
 	const [type, setType] = useState(CameraType.back);
@@ -203,12 +203,12 @@ export default function App() {
 						>
 							<View style={styles.submmitButtonInner}></View>
 						</TouchableOpacity>
-						<Pressable>
+
+						<Pressable onPress={toggleCameraType}>
 							<MaterialIcons
 								name='flip-camera-android'
 								size={24}
 								color={COLOR_PRIMARY}
-								onPress={toggleCameraType}
 							/>
 						</Pressable>
 					</View>

@@ -6,6 +6,12 @@
 				{
 					"cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
 				}
+			],
+			[
+				"expo-screen-orientation",
+				{
+					"initialOrientation": "DEFAULT"
+				}
 			]
 		],
 		"name": "Zit Waste",
@@ -26,7 +32,8 @@
 			"supportsTablet": true,
 			"bundleIdentifier": "com.thangved.zitwaste",
 			"backgroundColor": "#ffffff",
-			"icon": "./assets/icon.png"
+			"icon": "./assets/icon.png",
+			"requireFullScreen": true
 		},
 		"android": {
 			"adaptiveIcon": {
