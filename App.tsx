@@ -2,6 +2,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import loadFonts from './utils/loadFonts';
 import MainView from './views/main';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,5 +20,9 @@ export default function App() {
 		return null;
 	}
 
-	return <MainView />;
+	return (
+		<SafeAreaProvider>
+			<MainView />
+		</SafeAreaProvider>
+	);
 }
