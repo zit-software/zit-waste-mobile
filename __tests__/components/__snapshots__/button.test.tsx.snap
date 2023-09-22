@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should be render 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#00000020",
+      "borderRadius": 15,
+      "display": "flex",
+      "flexDirection": "row",
+      "gap": 5,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 25,
+      "paddingVertical": 15,
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "fontFamily": "Montserrat_700Bold",
+        },
+        {
+          "color": "#000",
+        },
+      ]
+    }
+  >
+    Button
+  </Text>
+</View>
+`;
+
+exports[`<Button /> should be render with icon 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#00000020",
+      "borderRadius": 15,
+      "display": "flex",
+      "flexDirection": "row",
+      "gap": 5,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 25,
+      "paddingVertical": 15,
+    }
+  }
+>
+  icon
+  <Text
+    style={
+      [
+        {
+          "fontFamily": "Montserrat_700Bold",
+        },
+        {
+          "color": "#000",
+        },
+      ]
+    }
+  >
+    Button
+  </Text>
+</View>
+`;
