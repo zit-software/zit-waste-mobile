@@ -20,7 +20,6 @@
 		"@types/react": "~18.2.14",
 		"axios": "^1.5.0",
 		"expo": "^49.0.11",
-		"expo-app-loading": "^2.1.1",
 		"expo-asset": "~8.10.1",
 		"expo-camera": "~13.4.4",
 		"expo-dev-client": "~2.4.10",
