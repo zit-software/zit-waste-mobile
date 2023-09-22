@@ -9,7 +9,8 @@
 		"web": "expo start --web",
 		"prepare": "husky install",
 		"format": "prettier --write .",
-		"commitlint": "commitlint --edit"
+		"commitlint": "commitlint --edit",
+		"release": "standard-version"
 	},
 	"dependencies": {
 		"@expo-google-fonts/montserrat": "^0.2.3",
@@ -40,7 +41,8 @@
 		"@commitlint/cli": "^17.7.1",
 		"@commitlint/config-conventional": "^17.7.0",
 		"husky": "^8.0.0",
-		"prettier": "^3.0.3"
+		"prettier": "^3.0.3",
+		"standard-version": "^9.5.0"
 	},
 	"private": true
 }
