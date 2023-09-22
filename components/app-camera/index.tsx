@@ -44,9 +44,8 @@ export function _AppCamera(
 				<Button
 					onPress={requestPermission}
 					icon={<MaterialIcons name='camera' />}
-				>
-					<Text>Cho phép</Text>
-				</Button>
+					title='Cho phép '
+				/>
 			</View>
 		);
 	}
