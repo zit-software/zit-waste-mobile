@@ -1,17 +1,23 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { COLOR_PRIMARY } from '../../constants/colors';
+
+export enum ButtonVariant {
+	contained,
+	flated,
+}
 
 export interface ButtonProps {
-	children: React.ReactNode;
-	onPress?: () => void;
+	title: string;
 	icon?: React.ReactNode;
-	backgroundColor?: string;
+	variant?: ButtonVariant;
+	onPress?: () => void;
 }
 
 export default function Button({
-	children,
+	title,
 	icon,
-	backgroundColor,
+	variant = ButtonVariant.flated,
 	onPress,
 }: ButtonProps) {
 	return (
@@ -19,12 +25,26 @@ export default function Button({
 			style={{
 				...styles.button,
 				backgroundColor:
-					backgroundColor || styles.button.backgroundColor,
+					variant === ButtonVariant.contained
+						? COLOR_PRIMARY
+						: '#00000020',
 			}}
 			onPress={onPress}
 		>
 			{icon}
-			{children}
+			<Text
+				style={[
+					styles.text,
+					{
+						color:
+							variant === ButtonVariant.contained
+								? '#fff'
+								: '#000',
+					},
+				]}
+			>
+				{title}
+			</Text>
 		</TouchableOpacity>
 	);
 }
@@ -40,5 +60,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#00000020',
 		borderRadius: 15,
 		gap: 5,
+	},
+	text: {
+		fontFamily: 'Montserrat_700Bold',
 	},
 });

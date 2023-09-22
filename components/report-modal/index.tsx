@@ -1,4 +1,4 @@
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { CameraCapturedPicture } from 'expo-camera';
 import { useState } from 'react';
 import {
@@ -14,7 +14,7 @@ import {
 import { COLOR_PRIMARY } from '../../constants/colors';
 import { Label, labels } from '../../constants/labels';
 import wasteService from '../../services/waste.service';
-import Button from '../button';
+import Button, { ButtonVariant } from '../button';
 
 export interface ReportModalProps {
 	visible: boolean;
@@ -90,7 +90,7 @@ export default function ReportModal({
 									<Text
 										style={{
 											color: COLOR_PRIMARY,
-											fontWeight: '700',
+											fontFamily: 'Montserrat_700Bold',
 										}}
 									>
 										{item.name}
@@ -108,19 +108,16 @@ export default function ReportModal({
 								size={20}
 							/>
 						}
-						backgroundColor={COLOR_PRIMARY}
+						title='Gửi'
+						variant={ButtonVariant.contained}
 						onPress={handleSubmit}
-					>
-						<Text style={{ color: '#fff' }}>Gửi</Text>
-					</Button>
+					/>
 
 					<Button
 						icon={<MaterialCommunityIcons name='close' size={20} />}
-						backgroundColor='#00000020'
+						title='Đóng'
 						onPress={onClose}
-					>
-						<Text>Đóng</Text>
-					</Button>
+					/>
 				</View>
 			</View>
 		)
@@ -139,17 +136,17 @@ const styles = StyleSheet.create({
 		padding: 10,
 	},
 	container: {
-		gap: 10,
+		gap: 20,
 	},
 	heading: {
 		fontSize: 20,
-		fontWeight: 'bold',
 		borderBottomColor: '#ddd',
 		borderBottomWidth: 1,
 		paddingTop: 40,
 		paddingBottom: 10,
 		paddingHorizontal: 10,
 		margin: -10,
+		fontFamily: 'Montserrat_800ExtraBold',
 	},
 	img: {
 		width: 250,
@@ -161,9 +158,7 @@ const styles = StyleSheet.create({
 	},
 	whatIsThis: {
 		fontSize: 18,
-		fontWeight: '500',
-		fontStyle: 'italic',
-		marginBottom: 10,
+		fontFamily: 'Montserrat_700Bold_Italic',
 	},
 	items: {},
 	item: {

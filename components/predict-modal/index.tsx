@@ -7,10 +7,10 @@ import {
 	Text,
 	View,
 } from 'react-native';
-import { COLOR_PRIMARY } from '../../constants/colors';
 import { getLabel } from '../../constants/labels';
 import { DetectionResponse } from '../../services/waste.service';
-import Button from '../button';
+import Button, { ButtonVariant } from '../button';
+import { COLOR_PRIMARY } from '../../constants/colors';
 
 export interface PredictModalProps {
 	photo: ImageSourcePropType;
@@ -44,7 +44,8 @@ export default function PredictModal({
 						Có thể đây là{' '}
 						<Text
 							style={{
-								fontWeight: 'bold',
+								fontFamily: 'Montserrat_800ExtraBold',
+								color: COLOR_PRIMARY,
 							}}
 						>
 							{getLabel(prediected?.id).name}
@@ -55,7 +56,7 @@ export default function PredictModal({
 						<Text
 							style={{
 								color: '#00601B',
-								fontWeight: 'bold',
+								fontFamily: 'Montserrat_800ExtraBold',
 							}}
 						>
 							{(prediected?.one_hot[prediected.id] * 100).toFixed(
@@ -66,25 +67,29 @@ export default function PredictModal({
 					</View>
 
 					<View style={styles.buttons}>
-						<Button onPress={onOpenReportModal}>
-							<MaterialIcons
-								name='bug-report'
-								size={24}
-								color='#000'
-							/>
-							<Text>Báo cáo</Text>
-						</Button>
 						<Button
-							backgroundColor={COLOR_PRIMARY}
+							title='Báo cáo'
+							icon={
+								<MaterialIcons
+									name='bug-report'
+									size={24}
+									color='#000'
+								/>
+							}
+							onPress={onOpenReportModal}
+						/>
+						<Button
+							variant={ButtonVariant.contained}
+							title='Đóng'
+							icon={
+								<MaterialIcons
+									name='close'
+									size={24}
+									color='#fff'
+								/>
+							}
 							onPress={onClosePredictModal}
-						>
-							<MaterialIcons
-								name='close'
-								size={24}
-								color='#fff'
-							/>
-							<Text style={{ color: '#fff' }}>Đóng</Text>
-						</Button>
+						/>
 					</View>
 				</>
 			)}
@@ -114,6 +119,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 20,
 		marginVertical: 10,
+		fontFamily: 'Montserrat_300Light',
 	},
 	buttons: {
 		display: 'flex',
@@ -123,13 +129,13 @@ const styles = StyleSheet.create({
 	},
 	predictPercent: {
 		alignSelf: 'center',
-		width: 50,
-		height: 50,
+		width: 64,
+		height: 64,
 		borderRadius: 100,
-		backgroundColor: '#00FF4720',
+		backgroundColor: '#00FF4730',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginVertical: 10,
+		marginVertical: 20,
 	},
 });

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		fontSize: 24,
-		fontWeight: '900',
 		color: COLOR_PRIMARY,
+		fontFamily: 'Montserrat_800ExtraBold',
 	},
 });
