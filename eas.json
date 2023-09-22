@@ -7,9 +7,10 @@
 			"developmentClient": true,
 			"distribution": "internal",
 			"env": {
-				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
+				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.thangved.com"
 			},
 			"channel": "development",
+			"autoIncrement": true,
 			"android": {
 				"buildType": "apk"
 			}
@@ -17,18 +18,23 @@
 		"preview": {
 			"distribution": "internal",
 			"env": {
-				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
+				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.thangved.com"
 			},
 			"channel": "preview",
+			"autoIncrement": true,
 			"android": {
 				"buildType": "apk"
 			}
 		},
 		"production": {
 			"env": {
-				"EXPO_PUBLIC_API_URL": "http://localhost:8000"
+				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.thangved.com"
 			},
-			"channel": "production"
+			"channel": "production",
+			"autoIncrement": true,
+			"android": {
+				"buildType": "apk"
+			}
 		}
 	},
 	"submit": {
