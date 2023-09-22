@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppHeader /> should be render 1`] = `
+<View
+  style={
+    {
+      "paddingTop": 10,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "gap": 15,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        {
+          "height": 45,
+          "objectFit": "contain",
+          "width": 45,
+        }
+      }
+    />
+    <Text
+      style={
+        {
+          "color": "#1455B6",
+          "fontFamily": "Montserrat_800ExtraBold",
+          "fontSize": 24,
+        }
+      }
+    >
+      Zit Waste
+    </Text>
+  </View>
+</View>
+`;
