@@ -1,21 +1,24 @@
 import { MaterialIcons } from '@expo/vector-icons';
+import { useEffect, useRef } from 'react';
 import {
 	ActivityIndicator,
+	Animated,
 	Image,
 	ImageSourcePropType,
 	StyleSheet,
 	Text,
 	View,
 } from 'react-native';
+import { COLOR_DANGER, COLOR_PRIMARY } from '../../constants/colors';
 import { getLabel } from '../../constants/labels';
 import { DetectionResponse } from '../../services/waste.service';
 import Button, { ButtonVariant } from '../button';
-import { COLOR_PRIMARY } from '../../constants/colors';
 
 export interface PredictModalProps {
 	photo: ImageSourcePropType;
 	loading?: boolean;
 	prediected: DetectionResponse | null;
+	error?: string;
 	onOpenReportModal?: () => void;
 	onClosePredictModal?: () => void;
 }
@@ -24,48 +27,83 @@ export default function PredictModal({
 	photo,
 	loading,
 	prediected,
+	error,
 	onOpenReportModal,
 	onClosePredictModal,
 }: PredictModalProps) {
+	const marginTopAnimate = useRef(new Animated.Value(1)).current;
+
+	const marginTop = marginTopAnimate.interpolate({
+		inputRange: [0, 1],
+		outputRange: [0, 100],
+	});
+
+	useEffect(() => {
+		loading
+			? Animated.spring(marginTopAnimate, {
+					toValue: 1,
+					useNativeDriver: true,
+			  }).start()
+			: Animated.spring(marginTopAnimate, {
+					toValue: 0,
+					useNativeDriver: true,
+			  }).start();
+	}, [loading]);
+
 	return (
-		<View style={styles.predictModal}>
+		<Animated.View
+			style={{
+				transform: [
+					{
+						translateY: marginTop,
+					},
+				],
+			}}
+		>
 			{photo && <Image style={styles.predictImg} source={photo} />}
 
 			{loading ? (
 				<ActivityIndicator size='large' color='#000' />
 			) : (
 				<>
-					<Image
-						style={styles.predictIcon}
-						source={getLabel(prediected?.id).img}
-					/>
+					{error ? (
+						<View>
+							<Text style={styles.error}>{error}</Text>
+						</View>
+					) : (
+						<>
+							<Image
+								style={styles.predictIcon}
+								source={getLabel(prediected?.id).img}
+							/>
 
-					<Text style={styles.predictText}>
-						Có thể đây là{' '}
-						<Text
-							style={{
-								fontFamily: 'Montserrat_800ExtraBold',
-								color: COLOR_PRIMARY,
-							}}
-						>
-							{getLabel(prediected?.id).name}
-						</Text>
-					</Text>
+							<Text style={styles.predictText}>
+								Có thể đây là{' '}
+								<Text
+									style={{
+										fontFamily: 'Montserrat_800ExtraBold',
+										color: COLOR_PRIMARY,
+									}}
+								>
+									{getLabel(prediected?.id).name}
+								</Text>
+							</Text>
 
-					<View style={styles.predictPercent}>
-						<Text
-							style={{
-								color: '#00601B',
-								fontFamily: 'Montserrat_800ExtraBold',
-							}}
-						>
-							{(prediected?.one_hot[prediected.id] * 100).toFixed(
-								0,
-							)}
-							%
-						</Text>
-					</View>
-
+							<View style={styles.predictPercent}>
+								<Text
+									style={{
+										color: '#00601B',
+										fontFamily: 'Montserrat_800ExtraBold',
+									}}
+								>
+									{(
+										prediected?.one_hot[prediected.id] * 100
+									).toFixed(0)}
+									%
+								</Text>
+							</View>
+						</>
+					)}
 					<View style={styles.buttons}>
 						<Button
 							title='Báo cáo'
@@ -93,7 +131,7 @@ export default function PredictModal({
 					</View>
 				</>
 			)}
-		</View>
+		</Animated.View>
 	);
 }
 
@@ -137,5 +175,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginVertical: 20,
+	},
+	error: {
+		color: COLOR_DANGER,
+		fontFamily: 'Montserrat_500Medium',
+		textAlign: 'center',
+		justifyContent: 'center',
+		fontSize: 20,
+		marginBottom: 20,
 	},
 });

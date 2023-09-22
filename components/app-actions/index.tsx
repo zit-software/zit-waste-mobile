@@ -25,15 +25,14 @@ export default function AppActions({
 
 	const rotate = rotationAnimate.interpolate({
 		inputRange: [0, 1],
-		outputRange: ['0deg', '360deg'],
+		outputRange: ['0deg', '180deg'],
 	});
 
 	const handleFlipCamera = () => {
 		Animated.spring(rotationAnimate, {
 			toValue: 1,
 			useNativeDriver: true,
-		}).start(({ finished }) => {
-			if (!finished) return;
+		}).start(() => {
 			rotationAnimate.setValue(0);
 		});
 		toggleCameraType?.();

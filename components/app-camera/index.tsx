@@ -1,8 +1,10 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Camera, CameraType } from 'expo-camera';
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useEffect, useMemo, useRef } from 'react';
 import {
 	ActivityIndicator,
+	Animated,
+	StyleSheet,
 	Text,
 	View,
 	useWindowDimensions,
@@ -21,6 +23,21 @@ export function _AppCamera(
 	cameraRef: React.Ref<AppCameraRef>,
 ) {
 	const [permission, requestPermission] = Camera.useCameraPermissions();
+	const flipAnimate = useRef(new Animated.Value(0)).current;
+
+	const flip = flipAnimate.interpolate({
+		inputRange: [0, 1],
+		outputRange: ['0deg', '360deg'],
+	});
+
+	useEffect(() => {
+		Animated.spring(flipAnimate, {
+			toValue: 1,
+			useNativeDriver: true,
+		}).start(() => {
+			flipAnimate.setValue(0);
+		});
+	}, [type]);
 
 	const { width } = useWindowDimensions();
 
@@ -51,23 +68,43 @@ export function _AppCamera(
 	}
 
 	return (
-		<Camera
+		<Animated.View
 			style={[
+				styles.camera,
 				{
-					width: '100%',
-					height,
-					justifyContent: 'center',
+					transform: [
+						{
+							rotateY: flip,
+						},
+					],
 				},
 			]}
-			type={type}
-			ref={cameraRef}
-			ratio='4:3'
 		>
-			<ActivityIndicator size={50} color='#fff' animating={loading} />
-		</Camera>
+			<Camera
+				style={[
+					{
+						width: '100%',
+						height,
+						justifyContent: 'center',
+					},
+				]}
+				type={type}
+				ref={cameraRef}
+				ratio='4:3'
+			>
+				<ActivityIndicator size={50} color='#fff' animating={loading} />
+			</Camera>
+		</Animated.View>
 	);
 }
 
 const AppCamera = forwardRef(_AppCamera);
 
 export default AppCamera;
+
+const styles = StyleSheet.create({
+	camera: {
+		borderRadius: 20,
+		overflow: 'hidden',
+	},
+});

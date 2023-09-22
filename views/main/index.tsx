@@ -17,6 +17,7 @@ export default function MainView() {
 	const [prediected, setPredicted] = useState<DetectionResponse | null>();
 	const [isOpenReportModal, setIsOpenReportModal] = useState(false);
 	const [isTakingPicture, setIsTakingPicture] = useState(false);
+	const [predictError, setPredictError] = useState<string | null>();
 
 	const cameraRef = useRef<AppCameraRef | null>();
 
@@ -61,7 +62,7 @@ export default function MainView() {
 
 			setPredicted(res);
 		} catch (error) {
-			Alert.alert('Lỗi dự đoán', error.message);
+			setPredictError(error.message);
 		} finally {
 			setIsPrediction(false);
 		}
@@ -79,13 +80,11 @@ export default function MainView() {
 					},
 				]}
 			>
-				<View style={styles.camera}>
-					<AppCamera
-						ref={cameraRef}
-						loading={isTakingPicture}
-						type={cameraType}
-					/>
-				</View>
+				<AppCamera
+					ref={cameraRef}
+					loading={isTakingPicture}
+					type={cameraType}
+				/>
 			</View>
 
 			{isOpenPredictModal ? (
@@ -93,6 +92,7 @@ export default function MainView() {
 					photo={photo}
 					prediected={prediected}
 					loading={isPrediction}
+					error={predictError}
 					onClosePredictModal={() => setIsOpenPredictModal(false)}
 					onOpenReportModal={() => setIsOpenReportModal(true)}
 				/>
@@ -123,10 +123,5 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flex: 1,
 		justifyContent: 'center',
-	},
-	camera: {
-		width: '100%',
-		overflow: 'hidden',
-		borderRadius: 20,
 	},
 });
