@@ -23,18 +23,27 @@ export function _AppCamera(
 	cameraRef: React.Ref<AppCameraRef>,
 ) {
 	const [permission, requestPermission] = Camera.useCameraPermissions();
-	const flipAnimate = useRef(new Animated.Value(0)).current;
-	const scaleAnimate = useRef(new Animated.Value(0)).current;
 
+	const flipAnimate = useRef(new Animated.Value(0)).current;
 	const flip = flipAnimate.interpolate({
 		inputRange: [0, 1],
 		outputRange: ['0deg', '360deg'],
 	});
 
+	const scaleAnimate = useRef(new Animated.Value(0)).current;
 	const scale = scaleAnimate.interpolate({
 		inputRange: [0, 1],
 		outputRange: [1, 0.8],
 	});
+
+	const { width: windowWidth } = useWindowDimensions();
+
+	const cameraWidth = useMemo(() => windowWidth - 20, [windowWidth]);
+
+	const cameraHeight = useMemo(
+		() => Math.round((cameraWidth * 4) / 3),
+		[cameraWidth],
+	);
 
 	useEffect(() => {
 		Animated.spring(flipAnimate, {
@@ -44,13 +53,6 @@ export function _AppCamera(
 			flipAnimate.setValue(0);
 		});
 	}, [type]);
-
-	const { width: windowWidth } = useWindowDimensions();
-
-	const cameraHeight = useMemo(
-		() => Math.round(((windowWidth - 20) * 4) / 3),
-		[windowWidth],
-	);
 
 	useEffect(() => {
 		if (loading) {
@@ -106,18 +108,14 @@ export function _AppCamera(
 				style={[
 					styles.camera,
 					{
-						transform: [
-							{
-								scale,
-							},
-						],
+						transform: [{ scale }],
 					},
 				]}
 			>
 				<Camera
 					style={[
 						{
-							width: '100%',
+							width: cameraWidth,
 							height: cameraHeight,
 							justifyContent: 'center',
 						},
@@ -145,5 +143,8 @@ const styles = StyleSheet.create({
 	camera: {
 		borderRadius: 20,
 		overflow: 'hidden',
+		objectFit: 'cover',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });

@@ -1,6 +1,6 @@
 import { CameraCapturedPicture, CameraType } from 'expo-camera';
 import { useRef, useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, ImageURISource, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppActions from '../../components/app-actions';
 import AppCamera, { AppCameraRef } from '../../components/app-camera';
@@ -12,7 +12,7 @@ import resizeImage from '../../utils/resizeImage';
 
 export default function MainView() {
 	const [cameraType, setCameraType] = useState(CameraType.back);
-	const [photo, setPhoto] = useState<CameraCapturedPicture | null>();
+	const [photo, setPhoto] = useState<ImageURISource | null>();
 	const [isOpenPredictModal, setIsOpenPredictModal] = useState(false);
 	const [isPrediction, setIsPrediction] = useState(false);
 	const [prediected, setPredicted] = useState<DetectionResponse | null>();
@@ -36,7 +36,10 @@ export default function MainView() {
 		try {
 			setIsTakingPicture(true);
 			const photo = await resizeImage(
-				await cameraRef.current.takePictureAsync(),
+				await cameraRef.current.takePictureAsync({
+					skipProcessing: true,
+					fastMode: true,
+				}),
 			);
 
 			return photo;

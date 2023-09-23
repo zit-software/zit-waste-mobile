@@ -6,6 +6,7 @@ import {
 	Alert,
 	FlatList,
 	Image,
+	ImageURISource,
 	Pressable,
 	StyleSheet,
 	Text,
@@ -18,7 +19,7 @@ import Button, { ButtonVariant } from '../button';
 
 export interface ReportModalProps {
 	visible: boolean;
-	photo: CameraCapturedPicture;
+	photo: ImageURISource;
 	onClose: () => void;
 }
 
