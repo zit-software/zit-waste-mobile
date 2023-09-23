@@ -1,5 +1,4 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { CameraType } from 'expo-camera';
 import { useEffect, useRef } from 'react';
 import {
 	Animated,
