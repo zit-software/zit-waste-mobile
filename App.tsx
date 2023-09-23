@@ -1,8 +1,10 @@
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import loadFonts from './utils/loadFonts';
 import MainView from './views/main';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { COLOR_PRIMARY } from './constants/colors';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,6 +24,7 @@ export default function App() {
 
 	return (
 		<SafeAreaProvider>
+			<StatusBar animated />
 			<MainView />
 		</SafeAreaProvider>
 	);
