@@ -1,7 +1,17 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { API_URL } from '../config';
 
-export const createClient = (baseUrl = '') => {
+/**
+ * Create a client to make requests to the API
+ * @param {string} baseUrl The base url to make requests to
+ * @returns {AxiosInstance} The client
+ * @example
+ * const client = createClient('users');
+ *
+ * client.get('/1');
+ * // GET https://api.com/users/1
+ */
+export const createClient = (baseUrl: string = ''): AxiosInstance => {
 	const client = axios.create({
 		baseURL: `${API_URL}/${baseUrl}`,
 	});

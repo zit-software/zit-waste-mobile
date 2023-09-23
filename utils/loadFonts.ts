@@ -20,7 +20,14 @@ import {
 } from '@expo-google-fonts/montserrat';
 import * as Font from 'expo-font';
 
-export default async function loadFonts() {
+/**
+ * Load fonts
+ * @returns {Promise<void>}
+ * @example
+ * await loadFonts();
+ * // Fonts are loaded
+ */
+export default async function loadFonts(): Promise<void> {
 	await Font.loadAsync({
 		Montserrat_100Thin,
 		Montserrat_200ExtraLight,
