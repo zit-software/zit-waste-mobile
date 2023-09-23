@@ -14,6 +14,9 @@
 				}
 			]
 		],
+		"androidStatusBar": {
+			"hidden": false
+		},
 		"name": "Zit Waste",
 		"slug": "zit-waste",
 		"description": "Phân loại rác thải bằng AI",
@@ -48,8 +51,7 @@
 			"permissions": ["android.permission.CAMERA"],
 			"allowBackup": true,
 			"icon": "./assets/icon.png",
-			"package": "com.zitsoftware.zitwaste",
-			"versionCode": 6
+			"package": "com.zitsoftware.zitwaste"
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"

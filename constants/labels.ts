@@ -15,12 +15,12 @@ export const labels: Label[] = [
 	{
 		id: 1,
 		name: 'Rác vô cơ',
-		img: require('../assets/wood.jpg'),
+		img: require('../assets/inorganic-waste.png'),
 	},
 	{
 		id: 2,
 		name: 'Rác hữu cơ',
-		img: require('../assets/banana.jpg'),
+		img: require('../assets/food-waste.png'),
 	},
 ];
 

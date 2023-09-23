@@ -136,9 +136,6 @@ export default function PredictModal({
 }
 
 const styles = StyleSheet.create({
-	predictModal: {
-		paddingVertical: 40,
-	},
 	predictImg: {
 		width: 250,
 		height: 250,
