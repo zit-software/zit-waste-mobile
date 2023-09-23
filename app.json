@@ -48,7 +48,8 @@
 			"permissions": ["android.permission.CAMERA"],
 			"allowBackup": true,
 			"icon": "./assets/icon.png",
-			"package": "com.zitsoftware.zitwaste"
+			"package": "com.zitsoftware.zitwaste",
+			"versionCode": 5
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"
