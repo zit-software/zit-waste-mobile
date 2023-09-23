@@ -7,7 +7,7 @@
 			"developmentClient": true,
 			"distribution": "internal",
 			"env": {
-				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.thangved.com"
+				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.azurewebsites.net"
 			},
 			"channel": "development",
 			"autoIncrement": true,
@@ -18,7 +18,7 @@
 		"preview": {
 			"distribution": "internal",
 			"env": {
-				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.thangved.com"
+				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.azurewebsites.net"
 			},
 			"channel": "preview",
 			"autoIncrement": true,
@@ -28,7 +28,7 @@
 		},
 		"production": {
 			"env": {
-				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.thangved.com"
+				"EXPO_PUBLIC_API_URL": "https://zitwasteapi.azurewebsites.net"
 			},
 			"channel": "production",
 			"autoIncrement": true,
