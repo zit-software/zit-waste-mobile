@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 20,
 		marginVertical: 10,
-		fontFamily: 'Montserrat_300Light',
+		fontFamily: 'Montserrat_700Bold',
+		fontStyle: 'italic',
 	},
 	buttons: {
 		display: 'flex',
