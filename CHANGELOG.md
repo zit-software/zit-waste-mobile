@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/zit-software/zit-waste-mobile/compare/v1.1.0...v1.2.0) (2023-09-23)
+
+### Features
+
+-   add waste animation ([082fe78](https://github.com/zit-software/zit-waste-mobile/commit/082fe781d0af4d9e689e0c6e0c1f23887aab3131))
+-   resize image ([ad6a78d](https://github.com/zit-software/zit-waste-mobile/commit/ad6a78d925c2f40651e153a6068776a5e17bb508))
+-   taking photo animation ([ba07601](https://github.com/zit-software/zit-waste-mobile/commit/ba076019aba150119c1ff7c58d28c6530d579014))
+
 ## 1.1.0 (2023-09-23)
 
 ### Features
