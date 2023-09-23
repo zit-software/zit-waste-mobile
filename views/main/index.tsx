@@ -8,6 +8,7 @@ import AppHeader from '../../components/app-header';
 import PredictModal from '../../components/predict-modal';
 import ReportModal from '../../components/report-modal';
 import wasteService, { DetectionResponse } from '../../services/waste.service';
+import resizeImage from '../../utils/resizeImage';
 
 export default function MainView() {
 	const [cameraType, setCameraType] = useState(CameraType.back);
@@ -34,7 +35,9 @@ export default function MainView() {
 
 		try {
 			setIsTakingPicture(true);
-			const photo = await cameraRef.current.takePictureAsync();
+			const photo = await resizeImage(
+				await cameraRef.current.takePictureAsync(),
+			);
 
 			return photo;
 		} catch (error) {
