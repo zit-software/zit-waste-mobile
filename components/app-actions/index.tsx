@@ -1,6 +1,6 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { CameraType } from 'expo-camera';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import {
 	Animated,
 	Pressable,
@@ -12,12 +12,13 @@ import { COLOR_PRIMARY } from '../../constants/colors';
 import NetworkStatus from '../network-status';
 
 export interface AppActionsProps {
-	type?: CameraType;
+	loading?: boolean;
 	takePicture?: () => void;
 	toggleCameraType?: () => void;
 }
 
 export default function AppActions({
+	loading,
 	takePicture,
 	toggleCameraType,
 }: AppActionsProps) {
@@ -38,8 +39,38 @@ export default function AppActions({
 		toggleCameraType?.();
 	};
 
+	const translateYAnimate = useRef(new Animated.Value(0)).current;
+
+	const translateY = translateYAnimate.interpolate({
+		inputRange: [0, 1],
+		outputRange: [0, 100],
+	});
+
+	useEffect(() => {
+		loading
+			? Animated.spring(translateYAnimate, {
+					toValue: 1,
+					useNativeDriver: true,
+			  }).start()
+			: Animated.spring(translateYAnimate, {
+					toValue: 0,
+					useNativeDriver: true,
+			  }).start();
+	}, [loading]);
+
 	return (
-		<View style={styles.container}>
+		<Animated.View
+			style={[
+				styles.container,
+				{
+					transform: [
+						{
+							translateY,
+						},
+					],
+				},
+			]}
+		>
 			<NetworkStatus />
 			<TouchableOpacity style={styles.submitButton} onPress={takePicture}>
 				<View style={styles.submmitButtonInner}>
@@ -63,7 +94,7 @@ export default function AppActions({
 					/>
 				</Pressable>
 			</Animated.View>
-		</View>
+		</Animated.View>
 	);
 }
 

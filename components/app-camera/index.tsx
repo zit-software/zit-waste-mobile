@@ -24,10 +24,16 @@ export function _AppCamera(
 ) {
 	const [permission, requestPermission] = Camera.useCameraPermissions();
 	const flipAnimate = useRef(new Animated.Value(0)).current;
+	const scaleAnimate = useRef(new Animated.Value(0)).current;
 
 	const flip = flipAnimate.interpolate({
 		inputRange: [0, 1],
 		outputRange: ['0deg', '360deg'],
+	});
+
+	const scale = scaleAnimate.interpolate({
+		inputRange: [0, 1],
+		outputRange: [1, 0.8],
 	});
 
 	useEffect(() => {
@@ -39,9 +45,26 @@ export function _AppCamera(
 		});
 	}, [type]);
 
-	const { width } = useWindowDimensions();
+	const { width: windowWidth } = useWindowDimensions();
 
-	const height = useMemo(() => Math.round(((width - 20) * 4) / 3), [width]);
+	const cameraHeight = useMemo(
+		() => Math.round(((windowWidth - 20) * 4) / 3),
+		[windowWidth],
+	);
+
+	useEffect(() => {
+		if (loading) {
+			Animated.spring(scaleAnimate, {
+				toValue: 1,
+				useNativeDriver: true,
+			}).start();
+		} else {
+			Animated.spring(scaleAnimate, {
+				toValue: 0,
+				useNativeDriver: true,
+			}).start();
+		}
+	}, [loading]);
 
 	if (!permission) {
 		return <View />;
@@ -70,7 +93,6 @@ export function _AppCamera(
 	return (
 		<Animated.View
 			style={[
-				styles.camera,
 				{
 					transform: [
 						{
@@ -80,20 +102,37 @@ export function _AppCamera(
 				},
 			]}
 		>
-			<Camera
+			<Animated.View
 				style={[
+					styles.camera,
 					{
-						width: '100%',
-						height,
-						justifyContent: 'center',
+						transform: [
+							{
+								scale,
+							},
+						],
 					},
 				]}
-				type={type}
-				ref={cameraRef}
-				ratio='4:3'
 			>
-				<ActivityIndicator size={50} color='#fff' animating={loading} />
-			</Camera>
+				<Camera
+					style={[
+						{
+							width: '100%',
+							height: cameraHeight,
+							justifyContent: 'center',
+						},
+					]}
+					type={type}
+					ref={cameraRef}
+					ratio='4:3'
+				>
+					<ActivityIndicator
+						size={50}
+						color='#fff'
+						animating={loading}
+					/>
+				</Camera>
+			</Animated.View>
 		</Animated.View>
 	);
 }

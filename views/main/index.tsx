@@ -101,6 +101,7 @@ export default function MainView() {
 				/>
 			) : (
 				<AppActions
+					loading={isTakingPicture}
 					takePicture={hanleSubmit}
 					toggleCameraType={toggleCameraType}
 				/>
