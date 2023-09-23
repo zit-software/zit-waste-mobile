@@ -1,4 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
+import LottieView from 'lottie-react-native';
 import { useEffect, useRef } from 'react';
 import {
 	ActivityIndicator,
@@ -72,7 +73,8 @@ export default function PredictModal({
 						</View>
 					) : (
 						<>
-							<Image
+							<LottieView
+								autoPlay
 								style={styles.predictIcon}
 								source={getLabel(prediected?.id).img}
 							/>
@@ -145,10 +147,11 @@ const styles = StyleSheet.create({
 		marginVertical: 20,
 	},
 	predictIcon: {
-		width: 100,
-		height: 100,
+		width: 400,
+		height: 400,
 		alignSelf: 'center',
-		objectFit: 'contain',
+		marginTop: -100,
+		marginBottom: -200,
 	},
 	predictText: {
 		textAlign: 'center',

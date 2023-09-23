@@ -3,24 +3,24 @@ import { ImageSourcePropType } from 'react-native';
 export interface Label {
 	id: number;
 	name: string;
-	img: ImageSourcePropType;
+	img: string;
 }
 
 export const labels: Label[] = [
 	{
 		id: 0,
 		name: 'Rác điện tử',
-		img: require('../assets/e-waste-recycling.png'),
+		img: require('../assets/lotties/electric.json'),
 	},
 	{
 		id: 1,
 		name: 'Rác vô cơ',
-		img: require('../assets/inorganic-waste.png'),
+		img: require('../assets/lotties/inorganic.json'),
 	},
 	{
 		id: 2,
 		name: 'Rác hữu cơ',
-		img: require('../assets/food-waste.png'),
+		img: require('../assets/lotties/organic.json'),
 	},
 ];
 
