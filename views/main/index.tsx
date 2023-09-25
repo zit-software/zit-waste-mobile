@@ -38,12 +38,12 @@ export default function MainView() {
 			const photo = await resizeImage(
 				await cameraRef.current.takePictureAsync({
 					skipProcessing: true,
-					fastMode: true,
 				}),
 			);
 
 			return photo;
 		} catch (error) {
+			console.log('Taking photo error: ', error);
 			Alert.alert('Lỗi chụp hình', error.message);
 		} finally {
 			setIsTakingPicture(false);
