@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/zit-software/zit-waste-mobile/compare/v1.2.1...v1.2.2) (2023-09-26)
+
+### Bug Fixes
+
+-   fix taking photo bug ([17015e0](https://github.com/zit-software/zit-waste-mobile/commit/17015e06e7e46827f3dcd87a078c7ef845f55374))
+
 ### [1.2.1](https://github.com/zit-software/zit-waste-mobile/compare/v1.2.0...v1.2.1) (2023-09-23)
 
 ## [1.2.0](https://github.com/zit-software/zit-waste-mobile/compare/v1.1.0...v1.2.0) (2023-09-23)

@@ -52,7 +52,7 @@
 			"allowBackup": true,
 			"icon": "./assets/icon.png",
 			"package": "com.zitsoftware.zitwaste",
-			"versionCode": 5
+			"versionCode": 7
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"
