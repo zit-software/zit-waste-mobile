@@ -39,6 +39,8 @@ npm start -- --go
 
 > Tải ứng dụng Expo Go tại https://expo.io/client
 
+Lưu ý: nếu bạn không phải thành viên của zitsoftware trên expo.dev. Hãy xóa file `app.json` để expo cli tự gen ra file khác.
+
 ### Build
 
 #### Eas cli
