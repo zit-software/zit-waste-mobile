@@ -82,5 +82,5 @@ Tham khảo: https://reactnative.dev/docs/environment-setup
 -   Build
 
     ```sh
-    npx react-native run-android
+    npx react-native buil-android
     ```
