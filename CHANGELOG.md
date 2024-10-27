@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.1](https://github.com/zit-software/zit-waste-mobile/compare/v1.3.0...v1.3.1) (2024-10-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency expo-insights to ~0.7.0 ([74cb32d](https://github.com/zit-software/zit-waste-mobile/commit/74cb32d0a543f72b27dd4129fa24567c3a5adcfa))
+
 ## [1.3.0](https://github.com/zit-software/zit-waste-mobile/compare/v1.2.3...v1.3.0) (2024-10-27)
 
 
