@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.2](https://github.com/zit-software/zit-waste-mobile/compare/v1.3.1...v1.3.2) (2024-10-27)
+
+
+### Bug Fixes
+
+* fix build ci ([8dcd386](https://github.com/zit-software/zit-waste-mobile/commit/8dcd38619f61245df93fe70c1b55ca4a23eb4e51))
+
 ## [1.3.1](https://github.com/zit-software/zit-waste-mobile/compare/v1.3.0...v1.3.1) (2024-10-27)
 
 ### Bug Fixes
