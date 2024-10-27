@@ -1,4 +1,5 @@
-name: preview
+name: Preview
+
 on: pull_request
 
 jobs:
