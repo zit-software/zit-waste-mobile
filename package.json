@@ -1,6 +1,6 @@
 {
 	"name": "zit-waste",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"main": "node_modules/expo/AppEntry.js",
 	"scripts": {
 		"start": "expo start",
@@ -10,7 +10,6 @@
 		"prepare": "husky install",
 		"format": "prettier --write .",
 		"commitlint": "commitlint --edit",
-		"release": "standard-version",
 		"test": "jest --watch --coverage=false --changedSince=origin/master",
 		"testDebug": "jest -o --watch --coverage=false",
 		"testFinal": "jest",
@@ -22,7 +21,7 @@
 		"@expo/webpack-config": "^19.0.0",
 		"@tensorflow/tfjs": "^4.11.0",
 		"@types/react": "~18.2.14",
-		"axios": "^1.5.0",
+		"axios": "^1.7.4",
 		"expo": "^49.0.11",
 		"expo-asset": "~8.10.1",
 		"expo-camera": "~13.4.4",
@@ -51,8 +50,7 @@
 		"@types/jest": "^29.5.5",
 		"@types/react-test-renderer": "^18.0.2",
 		"husky": "^8.0.0",
-		"prettier": "^3.0.3",
-		"standard-version": "^9.5.0"
+		"prettier": "^3.0.3"
 	},
 	"private": true,
 	"jest": {
