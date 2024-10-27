@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/zit-software/zit-waste-mobile/compare/v1.2.3...v1.3.0) (2024-10-27)
+
+
+### Features
+
+* add expo-insights ([1bd8a75](https://github.com/zit-software/zit-waste-mobile/commit/1bd8a758cd8318836c6956b6667e45b997558e7f))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @expo/vector-icons to v14 ([cdb26f0](https://github.com/zit-software/zit-waste-mobile/commit/cdb26f01be31a0d3b7035f276c6838ae448f9aa0))
+* **deps:** update dependency @expo/webpack-config to v19.0.1 ([e2d0e20](https://github.com/zit-software/zit-waste-mobile/commit/e2d0e20b28d3bbecf0c73aaa6635645e4dafd197))
+* **deps:** update dependency @tensorflow/tfjs to v4.22.0 ([68d9473](https://github.com/zit-software/zit-waste-mobile/commit/68d9473424545f8bf62aea4e8a1d85c992d4efff))
+* **deps:** update dependency axios to v1.7.7 ([26e6c99](https://github.com/zit-software/zit-waste-mobile/commit/26e6c999f252f4a98123dc76194aaec06797222a))
+* **deps:** update dependency lottie-react-native to v7 ([19dc2c8](https://github.com/zit-software/zit-waste-mobile/commit/19dc2c81f7e5eea3380e97a883203fdc5e36aea5))
+* **deps:** update dependency react-native-safe-area-context to v4.12.0 ([81afc90](https://github.com/zit-software/zit-waste-mobile/commit/81afc90fba29cc46f7d840a3937b9ab6a99de6f5))
+* **deps:** update dependency react-native-web to v0.19.13 ([fd5dc72](https://github.com/zit-software/zit-waste-mobile/commit/fd5dc7203cf34d5f4c97ae7ea1bd46ce9793282b))
+* **deps:** update dependency typescript to v5.6.3 ([d4b0532](https://github.com/zit-software/zit-waste-mobile/commit/d4b0532d40020023b88c8acd246de88d9a746018))
+* **deps:** update expo monorepo ([9412c55](https://github.com/zit-software/zit-waste-mobile/commit/9412c55bc207ad759dcf658ea9fcf05004c03fe2))
+
 ## [1.2.3](https://github.com/zit-software/zit-waste-mobile/compare/v1.2.2...v1.2.3) (2024-10-27)
 
 ### Bug Fixes
