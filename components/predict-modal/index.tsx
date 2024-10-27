@@ -44,11 +44,11 @@ export default function PredictModal({
 			? Animated.spring(marginTopAnimate, {
 					toValue: 1,
 					useNativeDriver: true,
-			  }).start()
+				}).start()
 			: Animated.spring(marginTopAnimate, {
 					toValue: 0,
 					useNativeDriver: true,
-			  }).start();
+				}).start();
 	}, [loading]);
 
 	return (
