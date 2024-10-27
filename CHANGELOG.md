@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.3](https://github.com/zit-software/zit-waste-mobile/compare/v1.2.2...v1.2.3) (2024-10-27)
+
+
+### Bug Fixes
+
+* fix expo warn ([e8d2e4f](https://github.com/zit-software/zit-waste-mobile/commit/e8d2e4f4736633f88a0365209817fb507d1210e4))
+
 ### [1.2.2](https://github.com/zit-software/zit-waste-mobile/compare/v1.2.1...v1.2.2) (2023-09-26)
 
 ### Bug Fixes

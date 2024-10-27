@@ -20,10 +20,14 @@
 		"name": "Zit Waste",
 		"slug": "zit-waste",
 		"description": "Phân loại rác thải bằng AI",
-		"version": "1.0.0",
+		"version": "1.2.3",
 		"githubUrl": "https://github.com/zit-software/zit-waste-mobile",
 		"orientation": "portrait",
-		"platforms": ["ios", "android", "web"],
+		"platforms": [
+			"ios",
+			"android",
+			"web"
+		],
 		"privacy": "public",
 		"icon": "./assets/icon.png",
 		"userInterfaceStyle": "light",
@@ -34,7 +38,9 @@
 		},
 		"primaryColor": "#1455B6",
 		"backgroundColor": "#ffffff",
-		"assetBundlePatterns": ["**/*"],
+		"assetBundlePatterns": [
+			"**/*"
+		],
 		"ios": {
 			"supportsTablet": true,
 			"bundleIdentifier": "com.thangved.zitwaste",
@@ -48,11 +54,13 @@
 				"backgroundColor": "#1455B6",
 				"backgroundImage": "./assets/adaptive-icon-background.png"
 			},
-			"permissions": ["android.permission.CAMERA"],
+			"permissions": [
+				"android.permission.CAMERA"
+			],
 			"allowBackup": true,
 			"icon": "./assets/icon.png",
 			"package": "com.zitsoftware.zitwaste",
-			"versionCode": 7
+			"versionCode": 490010203
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"
