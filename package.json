@@ -7,7 +7,7 @@
 		"android": "expo run:android",
 		"ios": "expo run:ios",
 		"web": "expo start --web",
-		"prepare": "husky install",
+		"prepare": "husky",
 		"format": "prettier --write .",
 		"commitlint": "commitlint --edit",
 		"test": "jest --watch --coverage=false --changedSince=origin/master",
@@ -49,7 +49,7 @@
 		"@commitlint/config-conventional": "^19.0.0",
 		"@types/jest": "^29.5.5",
 		"@types/react-test-renderer": "^18.0.2",
-		"husky": "^9.0.0",
+		"husky": "^9.1.6",
 		"prettier": "^3.0.3"
 	},
 	"private": true,

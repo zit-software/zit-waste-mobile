@@ -50,11 +50,11 @@ export default function AppActions({
 			? Animated.spring(translateYAnimate, {
 					toValue: 1,
 					useNativeDriver: true,
-			  }).start()
+				}).start()
 			: Animated.spring(translateYAnimate, {
 					toValue: 0,
 					useNativeDriver: true,
-			  }).start();
+				}).start();
 	}, [loading]);
 
 	return (
