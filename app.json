@@ -23,11 +23,7 @@
 		"version": "1.3.1",
 		"githubUrl": "https://github.com/zit-software/zit-waste-mobile",
 		"orientation": "portrait",
-		"platforms": [
-			"ios",
-			"android",
-			"web"
-		],
+		"platforms": ["ios", "android", "web"],
 		"privacy": "public",
 		"icon": "./assets/icon.png",
 		"userInterfaceStyle": "light",
@@ -38,9 +34,7 @@
 		},
 		"primaryColor": "#1455B6",
 		"backgroundColor": "#ffffff",
-		"assetBundlePatterns": [
-			"**/*"
-		],
+		"assetBundlePatterns": ["**/*"],
 		"ios": {
 			"supportsTablet": true,
 			"bundleIdentifier": "com.thangved.zitwaste",
@@ -54,9 +48,7 @@
 				"backgroundColor": "#1455B6",
 				"backgroundImage": "./assets/adaptive-icon-background.png"
 			},
-			"permissions": [
-				"android.permission.CAMERA"
-			],
+			"permissions": ["android.permission.CAMERA"],
 			"allowBackup": true,
 			"icon": "./assets/icon.png",
 			"package": "com.zitsoftware.zitwaste",
