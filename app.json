@@ -20,7 +20,7 @@
 		"name": "Zit Waste",
 		"slug": "zit-waste",
 		"description": "Phân loại rác thải bằng AI",
-		"version": "1.3.3",
+		"version": "1.3.4",
 		"githubUrl": "https://github.com/zit-software/zit-waste-mobile",
 		"orientation": "portrait",
 		"platforms": [
@@ -60,7 +60,7 @@
 			"allowBackup": true,
 			"icon": "./assets/icon.png",
 			"package": "com.zitsoftware.zitwaste",
-			"versionCode": 490010303
+			"versionCode": 490010304
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"

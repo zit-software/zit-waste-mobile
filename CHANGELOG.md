@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.4](https://github.com/zit-software/zit-waste-mobile/compare/v1.3.3...v1.3.4) (2024-10-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-native-safe-area-context to v4.13.1 ([18a97ba](https://github.com/zit-software/zit-waste-mobile/commit/18a97baa632df4f1663c198f3087f29840cac442))
+
 ## [1.3.3](https://github.com/zit-software/zit-waste-mobile/compare/v1.3.2...v1.3.3) (2024-10-27)
 
 
