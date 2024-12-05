@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.6](https://github.com/zit-software/zit-waste-mobile/compare/v1.3.5...v1.3.6) (2024-12-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency axios to v1.7.9 ([e4da826](https://github.com/zit-software/zit-waste-mobile/commit/e4da8267c09771ea56e744a156b08d9c54d6b024))
+* **deps:** update dependency lottie-react-native to v7.1.0 ([4f756f4](https://github.com/zit-software/zit-waste-mobile/commit/4f756f499cb0fbeac5822312750683ac0ce97fbf))
+* **deps:** update dependency typescript to v5.7.2 ([61cc6bc](https://github.com/zit-software/zit-waste-mobile/commit/61cc6bc692bfd335f52e03ab25dfecffa4477546))
+
 ## [1.3.5](https://github.com/zit-software/zit-waste-mobile/compare/v1.3.4...v1.3.5) (2024-11-01)
 
 
